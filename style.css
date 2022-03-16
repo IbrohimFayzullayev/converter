@@ -34,10 +34,15 @@ body {
   height: 40vh;
   padding: 0.5rem;
 }
+.btns {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
 .btn {
-  width: 20%;
-  margin: 0 auto;
+  width: 25%;
   cursor: pointer;
+  padding: 0.3rem 0;
 }
 @media screen and (max-width: 900px) {
   html {
@@ -52,6 +57,10 @@ body {
   .btn {
     width: 30%;
     padding: 0.2rem 0;
-    margin: 0 auto;
+  }
+  .btns {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
   }
 } ;
