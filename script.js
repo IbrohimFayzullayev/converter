@@ -34,7 +34,6 @@ let conver = new Map([
   ["ya", "я"],
   ["yo", "ё"],
 ]);
-
 start1.addEventListener("click", function (e) {
   e.preventDefault();
   if (start1.textContent == "Start") {
@@ -42,26 +41,53 @@ start1.addEventListener("click", function (e) {
       str = uzbekText.value;
       let result = [];
       for (let i = 0; i < str.length; i++) {
-        if (str[i] == "c" && str[i + 1] == "h") {
-          result.push(conver.get("ch"));
-          i++;
-        } else if (str[i] == "s" && str[i + 1] == "h") {
-          result.push(conver.get("sh"));
-          i++;
-        } else if (str[i] == " ") {
-          result.push(" ");
-        } else if (str[i] == "y" && str[i + 1] == "o") {
-          result.push(conver.get("yo"));
-          i++;
-        } else if (str[i] == "y" && str[i + 1] == "a") {
-          result.push(conver.get("ya"));
-          i++;
-        } else if (str[i] == "h") {
-          result.push("х");
-        } else if (str[i] == "q") {
-          result.push("к");
-        } else {
-          result.push(conver.get(str[i]));
+        if (str[i] === str[i].toUpperCase()) {
+          if (str[i] == "C" && (str[i + 1] == "h" || str[i + 1] == "H")) {
+            result.push(conver.get("ch").toUpperCase());
+            i++;
+          } else if (
+            str[i] == "S" &&
+            (str[i + 1] == "h" || str[i + 1] == "H")
+          ) {
+            result.push(conver.get("sh").toUpperCase());
+            i++;
+          } else if (str[i] == "Y" && str[i + 1] == "o") {
+            result.push(conver.get("yo").toUpperCase());
+            i++;
+          } else if (str[i] == "Y" && str[i + 1] == "a") {
+            result.push(conver.get("ya").toUpperCase());
+            i++;
+          } else if (str[i] == "H") {
+            result.push("х".toUpperCase());
+          } else if (str[i] == "Q") {
+            result.push("к".toUpperCase());
+          } else if (conver.get(str[i].toLowerCase())) {
+            result.push(conver.get(str[i].toLowerCase()).toUpperCase());
+          } else {
+            result.push(str[i]);
+          }
+        } else if (str[i] == str[i].toLowerCase()) {
+          if (str[i] == "c" && str[i + 1] == "h") {
+            result.push(conver.get("ch"));
+            i++;
+          } else if (str[i] == "s" && str[i + 1] == "h") {
+            result.push(conver.get("sh"));
+            i++;
+          } else if (str[i] == "y" && str[i + 1] == "o") {
+            result.push(conver.get("yo"));
+            i++;
+          } else if (str[i] == "y" && str[i + 1] == "a") {
+            result.push(conver.get("ya"));
+            i++;
+          } else if (str[i] == "h") {
+            result.push("х");
+          } else if (str[i] == "q") {
+            result.push("к");
+          } else if (conver.get(str[i])) {
+            result.push(conver.get(str[i]));
+          } else {
+            result.push(str[i]);
+          }
         }
       }
       russianText.value = result.join("");
@@ -74,7 +100,6 @@ start1.addEventListener("click", function (e) {
     start2.disabled = false;
   }
 });
-
 start2.addEventListener("click", function (e) {
   e.preventDefault;
 
@@ -84,12 +109,16 @@ start2.addEventListener("click", function (e) {
       let id = [];
       for (let i = 0; i < str.length; i++) {
         for (const [key, val] of conver.entries()) {
-          if (val == str[i]) {
+          if (str[i] == str[i].toUpperCase()) {
+            if (val == str[i].toLowerCase()) {
+              id.push(key.toUpperCase());
+            }
+          } else if (val == str[i]) {
             id.push(key);
           }
         }
-        if (str[i] == " ") {
-          id.push(" ");
+        if (!conver.get(str[i])) {
+          id.push(str[i]);
         }
       }
       uzbekText.value = id.join("");
