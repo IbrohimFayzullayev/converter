@@ -22,7 +22,6 @@ let conver = new Map([
   ["n", "н"],
   ["o", "о"],
   ["p", "п"],
-  ["q", "к"],
   ["r", "р"],
   ["t", "т"],
   ["u", "у"],
@@ -59,6 +58,8 @@ start1.addEventListener("click", function (e) {
           i++;
         } else if (str[i] == "h") {
           result.push("х");
+        } else if (str[i] == "q") {
+          result.push("к");
         } else {
           result.push(conver.get(str[i]));
         }
