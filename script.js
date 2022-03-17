@@ -57,6 +57,8 @@ start1.addEventListener("click", function (e) {
         } else if (str[i] == "y" && str[i + 1] == "a") {
           result.push(conver.get("ya"));
           i++;
+        } else if (str[i] == "h") {
+          result.push("х");
         } else {
           result.push(conver.get(str[i]));
         }
